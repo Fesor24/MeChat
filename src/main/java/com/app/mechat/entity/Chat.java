@@ -6,6 +6,7 @@ import java.time.Instant;
 
 
 @Entity
+@Table(name = "chats")
 public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +14,8 @@ public class Chat {
 
     @Column(nullable = false, length = 150)
     private String message;
+
+    @Column(name = "created_at")
     private Instant createdAt;
 
     public Long getId(){

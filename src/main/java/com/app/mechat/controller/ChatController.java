@@ -20,17 +20,17 @@ public class ChatController {
         this.chatService = chatService;
     }
 
-    @GetMapping(":id")
+    @GetMapping("/{id}")
     public ChatResponseDto getChatById(Long id){
         return chatService.getChatById(id);
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<ChatResponseDto> getAllChats(){
         return chatService.getAllChats();
     }
 
-    @PostMapping("")
+    @PostMapping
     public Long createChat(ChatRequestDto request){
         return chatService.createChat(request.getMessage());
     }
