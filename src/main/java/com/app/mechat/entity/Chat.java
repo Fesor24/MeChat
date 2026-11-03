@@ -1,43 +1,21 @@
 package com.app.mechat.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.Instant;
 
-
 @Entity
 @Table(name = "chats")
-public class Chat {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+@Data
+public class Chat extends AuditableEntity{
     @Column(nullable = false, length = 150)
     private String message;
-
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    public Long getId(){
-        return this.id;
-    }
-
-    public void setMessage(String message){
-        this.message = message;
-    }
-
-    public String getMessage(){
-        return this.message;
-    }
-
-    public Instant getCreatedAt(){
-        return this.createdAt;
-    }
 
     public static Chat create(String message){
         Chat chat = new Chat();
         chat.message = message;
-        chat.createdAt = Instant.now();
+        chat.setCreatedAt(Instant.now());
 
         return chat;
     }

@@ -1,7 +1,10 @@
 package com.app.mechat.Dto;
 
+import lombok.Data;
+
 import java.time.Instant;
 
+@Data
 public class ChatResponseDto {
     private Long id;
     private String message;
@@ -11,29 +14,5 @@ public class ChatResponseDto {
         this.id = id;
         this.message = message;
         this.createdAt = createdAt;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public Long getId(){
-        return this.id;
-    }
-
-    public void setMessage(String message){
-        this.message = message;
-    }
-
-    public String getMessage(){
-        return this.message;
-    }
-
-    public void setCreatedAt(Instant createdAt){
-        this.createdAt = createdAt;
-    }
-
-    public Instant getCreatedAt(){
-        return this.createdAt;
     }
 }
