@@ -25,12 +25,14 @@ public class User extends AuditableEntity{
     private String password;
 
     public static User create(String firstName, String lastName,
-                              String userName, String password){
+                              String userName, String email,
+                              String password){
         User user = new User();
         user.firstName = firstName;
         user.lastName = lastName;
         user.userName = userName;
         user.password = password;
+        user.email = email;
 
         return user;
     }

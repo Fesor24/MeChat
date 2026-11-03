@@ -9,5 +9,4 @@ public class MechatApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MechatApplication.class, args);
 	}
-
 }

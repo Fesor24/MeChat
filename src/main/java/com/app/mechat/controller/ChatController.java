@@ -29,7 +29,7 @@ public class ChatController {
 
     @PostMapping
     public Long createChat(@RequestBody  ChatRequestDto request){
-        return chatService.createChat(request.getMessage());
+        return chatService.createChat(request.message());
     }
 
 
