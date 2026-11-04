@@ -5,12 +5,16 @@ import com.app.mechat.entity.Chat;
 import com.app.mechat.exceptions.NotFoundException;
 import com.app.mechat.primitives.Result;
 import com.app.mechat.repository.ChatRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ChatServiceImpl implements ChatService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ChatServiceImpl.class);
 
     private final ChatRepository chatRepository;
 
@@ -53,6 +57,8 @@ public class ChatServiceImpl implements ChatService {
         Chat chat = Chat.create(message);
 
         Chat newChat = chatRepository.save(chat);
+
+        logger.info("Saving a new chat");
 
         return Result.success(newChat.getId());
     }
