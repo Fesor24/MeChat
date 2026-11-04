@@ -6,12 +6,12 @@ public class Result<T>{
     @Getter private boolean isFailure;
     @Getter private boolean isSuccess;
     @Getter private Error error;
-    private T result;
+    @Getter private T value;
 
-    public Result(T result){
+    public Result(T value){
         isFailure = false;
         isSuccess = true;
-        this.result = result;
+        this.value = value;
         error = Error.none;
     }
 
@@ -19,13 +19,7 @@ public class Result<T>{
         isFailure = true;
         isSuccess = false;
         this.error = error;
-    }
-
-    public T getResult(){
-        if(isFailure)
-            throw new RuntimeException("Value of result can not be accessed");
-
-        return this.result;
+        this.value = null;
     }
 
     public static <T> Result<T> success(T result){

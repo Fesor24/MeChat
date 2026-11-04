@@ -3,6 +3,8 @@ package com.app.mechat.service;
 import com.app.mechat.dto.LoginRequestDto;
 import com.app.mechat.dto.RegisterUserRequestDto;
 import com.app.mechat.entity.User;
+import com.app.mechat.exceptions.ConflictException;
+import com.app.mechat.exceptions.NotFoundException;
 import com.app.mechat.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import com.app.mechat.primitives.Result;
@@ -22,12 +24,12 @@ public class AuthServiceImpl implements AuthService {
         boolean userWithEmailExist = userRepository.existsByEmail(request.email());
 
         if(userWithEmailExist)
-            throw new RuntimeException("User with email exists");
+            throw new ConflictException("User with email exists");
 
         boolean userWithUserNameExist = userRepository.existsByUserName(request.userName());
 
         if(userWithUserNameExist)
-            throw new RuntimeException("User with username exists");
+            throw new ConflictException("User with username exists");
 
         User newUser = User.create(
                 request.firstName(),
@@ -45,7 +47,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public Result<String> login(LoginRequestDto request) {
         User user = userRepository.findByUserName(request.userName())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new NotFoundException("User or password incorrect"));
 
         return new Result<>("access-token");
     }
