@@ -1,4 +1,4 @@
-package com.app.mechat.Dto;
+package com.app.mechat.dto;
 
 public record RegisterUserRequestDto(
         String firstName,

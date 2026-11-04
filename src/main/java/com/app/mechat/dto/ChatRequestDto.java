@@ -1,5 +1,3 @@
-package com.app.mechat.Dto;
-
-import lombok.Data;
+package com.app.mechat.dto;
 
 public record ChatRequestDto(String message) { }

@@ -1,9 +1,10 @@
 package com.app.mechat.service;
 
-import com.app.mechat.Dto.LoginRequestDto;
-import com.app.mechat.Dto.RegisterUserRequestDto;
+import com.app.mechat.dto.LoginRequestDto;
+import com.app.mechat.dto.RegisterUserRequestDto;
+import com.app.mechat.primitives.Result;
 
 public interface AuthService {
-    String register(RegisterUserRequestDto request);
-    String login(LoginRequestDto request);
+    Result<String> register(RegisterUserRequestDto request);
+    Result<String> login(LoginRequestDto request);
 }

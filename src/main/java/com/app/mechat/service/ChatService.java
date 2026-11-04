@@ -1,11 +1,12 @@
 package com.app.mechat.service;
 
-import com.app.mechat.Dto.ChatResponseDto;
+import com.app.mechat.dto.ChatResponseDto;
+import com.app.mechat.primitives.Result;
 
 import java.util.List;
 
 public interface ChatService {
-    List<ChatResponseDto> getAllChats();
-    ChatResponseDto getChatById(Long id);
-    Long createChat(String message);
+    Result<List<ChatResponseDto>> getAllChats();
+    Result<ChatResponseDto> getChatById(Long id);
+    Result<Long> createChat(String message);
 }

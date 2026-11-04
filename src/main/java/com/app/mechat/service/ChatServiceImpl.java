@@ -1,7 +1,8 @@
 package com.app.mechat.service;
 
-import com.app.mechat.Dto.ChatResponseDto;
+import com.app.mechat.dto.ChatResponseDto;
 import com.app.mechat.entity.Chat;
+import com.app.mechat.primitives.Result;
 import com.app.mechat.repository.ChatRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public List<ChatResponseDto> getAllChats() {
+    public Result<List<ChatResponseDto>> getAllChats() {
         List<Chat> chats = this.chatRepository.findAll();
 
         List<ChatResponseDto> chatResponse = chats.stream()
@@ -29,11 +30,11 @@ public class ChatServiceImpl implements ChatService {
                 ))
                 .toList();
 
-        return chatResponse;
+        return Result.success(chatResponse);
     }
 
     @Override
-    public ChatResponseDto getChatById(Long id) {
+    public Result<ChatResponseDto> getChatById(Long id) {
         Chat chat = chatRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Chat not found with Id: " + id));
 
@@ -44,15 +45,15 @@ public class ChatServiceImpl implements ChatService {
 
         );
 
-        return chatResponse;
+        return Result.success(chatResponse);
     }
 
     @Override
-    public Long createChat(String message) {
+    public Result<Long> createChat(String message) {
         Chat chat = Chat.create(message);
 
         Chat newChat = chatRepository.save(chat);
 
-        return newChat.getId();
+        return Result.success(newChat.getId());
     }
 }

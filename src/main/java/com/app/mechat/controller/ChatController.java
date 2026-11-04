@@ -1,8 +1,10 @@
 package com.app.mechat.controller;
 
-import com.app.mechat.Dto.ChatRequestDto;
-import com.app.mechat.Dto.ChatResponseDto;
+import com.app.mechat.dto.ChatRequestDto;
+import com.app.mechat.dto.ChatResponseDto;
+import com.app.mechat.primitives.Result;
 import com.app.mechat.service.ChatService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,18 +20,18 @@ public class ChatController {
     }
 
     @GetMapping("/{id}")
-    public ChatResponseDto getChatById(Long id){
-        return chatService.getChatById(id);
+    public ResponseEntity<Result<ChatResponseDto>> getChatById(Long id){
+        return ResponseEntity.ok(chatService.getChatById(id));
     }
 
     @GetMapping
-    public List<ChatResponseDto> getAllChats(){
-        return chatService.getAllChats();
+    public ResponseEntity<Result<List<ChatResponseDto>>> getAllChats(){
+        return ResponseEntity.ok(chatService.getAllChats());
     }
 
     @PostMapping
-    public Long createChat(@RequestBody  ChatRequestDto request){
-        return chatService.createChat(request.message());
+    public ResponseEntity<Result<Long>> createChat(@RequestBody  ChatRequestDto request){
+        return ResponseEntity.ok(chatService.createChat(request.message()));
     }
 
 

@@ -1,6 +1,4 @@
-package com.app.mechat.Dto;
-
-import lombok.Data;
+package com.app.mechat.dto;
 
 import java.time.Instant;
 

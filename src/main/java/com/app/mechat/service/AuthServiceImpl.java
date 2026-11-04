@@ -1,10 +1,11 @@
 package com.app.mechat.service;
 
-import com.app.mechat.Dto.LoginRequestDto;
-import com.app.mechat.Dto.RegisterUserRequestDto;
+import com.app.mechat.dto.LoginRequestDto;
+import com.app.mechat.dto.RegisterUserRequestDto;
 import com.app.mechat.entity.User;
 import com.app.mechat.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import com.app.mechat.primitives.Result;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -16,7 +17,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String register(RegisterUserRequestDto request) {
+    public Result<String> register(RegisterUserRequestDto request) {
 
         boolean userWithEmailExist = userRepository.existsByEmail(request.email());
 
@@ -38,14 +39,14 @@ public class AuthServiceImpl implements AuthService {
 
         userRepository.save(newUser);
 
-        return "access-token";
+        return new Result<>("access-token");
     }
 
     @Override
-    public String login(LoginRequestDto request) {
+    public Result<String> login(LoginRequestDto request) {
         User user = userRepository.findByUserName(request.userName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return "access-token";
+        return new Result<>("access-token");
     }
 }

@@ -1,4 +1,4 @@
-package com.app.mechat.Dto;
+package com.app.mechat.dto;
 
 public record LoginRequestDto(
         String userName,

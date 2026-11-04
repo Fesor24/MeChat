@@ -1,8 +1,10 @@
 package com.app.mechat.controller;
 
-import com.app.mechat.Dto.LoginRequestDto;
-import com.app.mechat.Dto.RegisterUserRequestDto;
+import com.app.mechat.dto.LoginRequestDto;
+import com.app.mechat.dto.RegisterUserRequestDto;
+import com.app.mechat.primitives.Result;
 import com.app.mechat.service.AuthService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +21,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequestDto request){
-        return authService.login(request);
+    public ResponseEntity<Result<String>> login(@RequestBody LoginRequestDto request){
+        return ResponseEntity.ok(authService.login(request));
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterUserRequestDto request){
-        return authService.register(request);
+    public ResponseEntity<Result<String>> register(@RequestBody RegisterUserRequestDto request){
+        return ResponseEntity.ok(authService.register(request));
     }
 }
